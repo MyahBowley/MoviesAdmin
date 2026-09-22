@@ -5,6 +5,6 @@
 
     public class TV_Show
     {
-
+        public int Id { get; set; }
     }
 }

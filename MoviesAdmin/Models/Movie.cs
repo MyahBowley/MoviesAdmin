@@ -4,12 +4,22 @@
     {
         public int Id { get; set; }
 
-        // title
-        //synopsis
-        //genre
-        //rating (pg13)
-        //runtime: hours/min (ex: 1h35m
-        //release date
+        public string Title { get; set; } = string.Empty;
+
+        public string Synopsis { get; set; } = string.Empty;
+
+        public string Genre { get; set; } = string.Empty;
+
+        public string ContentRating { get; set; } = string.Empty; // e.g. PG, PG-13, R
+
+        public DateTime ReleaseDate { get; set; }
+
+        public int Runtime { get; set; } // minutes
+
+        public string OriginalLanguage { get; set; } = string.Empty;
+
+        // IDEAS:
+        // public int BoxOffice { get; set; } // Gross earnings 
         // videos
         // photos
         // cast & crew (list?)
@@ -18,10 +28,6 @@
             // screenwriter
             // distributor
             // Production Co
-            // Original Language
-            // Box Office (money)
-
-
 
     }
 }
