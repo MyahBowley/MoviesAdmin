@@ -18,8 +18,9 @@
 
         public string OriginalLanguage { get; set; } = string.Empty;
 
+        public int BoxOffice { get; set; } // Gross Earnings
+
         // IDEAS:
-        // public int BoxOffice { get; set; } // Gross earnings 
         // videos
         // photos
         // cast & crew (list?)
