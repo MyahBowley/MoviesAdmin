@@ -43,12 +43,12 @@ namespace MoviesAdmin.Models
 
 
         [Required]
-        [Range(typeof(DateOnly), "01-01-1800", "12-31-9999",
-            ErrorMessage = "The theatrical release date cannot be earlier than January 1st, 1800")]
+        //[Range(typeof(DateOnly), "1800-01-01", "9999-12-31",
+        //    ErrorMessage = "The theatrical release date cannot be earlier than January 1st, 1800")]
         [Display(
-            Name = "Theatrical Release Date",
+            Name = "Theatrical Release",
             Description = "Please enter the date of the movie's theatrical release",
-            Prompt = "01-01-2000")]
+            Prompt = "YYYY-MM-DD")]
         public DateOnly ReleaseDate { get; set; }
 
 
