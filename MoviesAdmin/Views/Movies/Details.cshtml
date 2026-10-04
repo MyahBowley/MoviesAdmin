@@ -4,10 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>@Model.Title</h1>
 
 <div>
-    <h4>Movie</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -66,6 +65,7 @@
             @Html.DisplayFor(model => model.BoxOffice)
         </dd>
     </dl>
+
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
