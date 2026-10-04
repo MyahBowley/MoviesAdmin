@@ -1,0 +1,39 @@
+﻿namespace MoviesAdmin.Models.Enums
+{
+    public enum Genre
+    {
+        Action,
+        Adventure,
+        Animation,
+        Anime,
+        Biography,
+        Comedy,
+        Crime,
+        Documentary,
+        Drama,
+        Entertainment,
+        Family,
+        Fantasy,
+        Health,
+        History,
+        Holiday,
+        Horror,
+        Music,
+        Musical,
+        Mystery,
+        Nature,
+        News,
+        Reality,
+        Romance,
+        //[Display(Name="Sci-Fi")]
+        SciFi,
+        Short,
+        Soap,
+        Sports,
+        Thriller,
+        Travel,
+        Variety,
+        War,
+        Western 
+    }
+}
