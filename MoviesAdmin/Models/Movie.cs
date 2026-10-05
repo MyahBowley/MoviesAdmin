@@ -1,4 +1,5 @@
-﻿using MoviesAdmin.Models.Enums;
+﻿using Microsoft.Extensions.FileSystemGlobbing.Internal;
+using MoviesAdmin.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace MoviesAdmin.Models
@@ -9,8 +10,8 @@ namespace MoviesAdmin.Models
         public int Id { get; set; }
 
 
-        [Required]
-        [StringLength(100)] // Max length
+        [Required] // I didn't add other restrictions because sometimes movies can have unique titles and special symbols
+        [StringLength(100, ErrorMessage="Cannot exceed 100 characters")] // Max length 
         [Display(
             Name = "Title", 
             Description = "Please enter the movie title", 
@@ -19,7 +20,8 @@ namespace MoviesAdmin.Models
 
 
         [Required]
-        [StringLength(500)] // Keep Synopsis short
+        [StringLength(500, ErrorMessage = "Cannot exceed 500 characters")] // Keep Synopsis short
+        [RegularExpression(@"^(?=.*[A-Za-z]).+$", ErrorMessage = "There must be a alphabetical character")]
         [Display(
             Name = "Synopsis", 
             Description = "Please enter the movie synopsis", 
@@ -54,7 +56,7 @@ namespace MoviesAdmin.Models
 
 
         [Required]
-        [Range(1, 576000)] // Max is 40 days
+        [Range(1, 576000, ErrorMessage = "Cannot be shorter than a full minute, and cannot be longer then 576,000 minutes")] // Max is 40 days
         [Display(
             Name = "Run Time (min)", 
             Description = "Please enter the movie's runtime in minutes", 
