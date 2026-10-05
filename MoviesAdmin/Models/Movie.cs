@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MoviesAdmin.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoviesAdmin.Models
 {
@@ -21,8 +22,8 @@ namespace MoviesAdmin.Models
         [StringLength(500)] // Keep Synopsis short
         [Display(
             Name = "Synopsis", 
-            Description = "Please enter the movie's synopsis", 
-            Prompt = "")]
+            Description = "Please enter the movie synopsis", 
+            Prompt = "Enter movie synopsis")]
         public string Synopsis { get; set; } = string.Empty;
 
 
@@ -30,16 +31,16 @@ namespace MoviesAdmin.Models
         [Display(
             Name = "Genre", 
             Description = "Please choose the genre", 
-            Prompt = "Action")]
-        public string Genre { get; set; } = string.Empty;
+            Prompt = "Choose genre")]
+        public Genre Genre { get; set; }
 
 
         [Required]
         [Display(
             Name = "Content Rating", 
             Description = "Please choose the content rating", 
-            Prompt = "PG-13")]
-        public string ContentRating { get; set; } = string.Empty; // e.g. PG, PG-13, R
+            Prompt = "Choose content rating")]
+        public ContentRating ContentRating { get; set; } // e.g. PG, PG-13, R
 
 
         [Required]
@@ -55,7 +56,7 @@ namespace MoviesAdmin.Models
         [Required]
         [Range(1, 576000)] // Max is 40 days
         [Display(
-            Name = "Run Time", 
+            Name = "Run Time (min)", 
             Description = "Please enter the movie's runtime in minutes", 
             Prompt = "120")]
         public int Runtime { get; set; } // Minutes
@@ -66,11 +67,11 @@ namespace MoviesAdmin.Models
             Name = "Original Language", 
             Description = "Please enter the movie's original released language", 
             Prompt = "English")]
-        public string OriginalLanguage { get; set; } = string.Empty;
+        public Language OriginalLanguage { get; set; }
 
-         public int BoxOffice { get; set; } // Gross Earnings
 
         // IDEAS:
+        //public int BoxOffice { get; set; } // Gross Earnings
         // videos
         // photos
         // cast & crew (list?)

@@ -47,7 +47,7 @@ public class MoviesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Title,Synopsis,Genre,ContentRating,ReleaseDate,Runtime,OriginalLanguage,BoxOffice")] Movie movie)
+    public async Task<IActionResult> Create([Bind("Id,Title,Synopsis,Genre,ContentRating,ReleaseDate,Runtime,OriginalLanguage")] Movie movie)
     {
         if (ModelState.IsValid)
         {
@@ -79,7 +79,7 @@ public class MoviesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? id, [Bind("Id,Title,Synopsis,Genre,ContentRating,ReleaseDate,Runtime,OriginalLanguage,BoxOffice")] Movie movie)
+    public async Task<IActionResult> Edit(int? id, [Bind("Id,Title,Synopsis,Genre,ContentRating,ReleaseDate,Runtime,OriginalLanguage")] Movie movie)
     {
         if (id != movie.Id)
         {
