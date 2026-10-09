@@ -15,7 +15,7 @@ namespace MoviesAdmin.Models
 
         [Required]
         [Range(0, 5)] // allows 0 - 5 star ratings
-        public int StarRating { get; set; };
+        public int StarRating { get; set; }
 
 
         [Required]
