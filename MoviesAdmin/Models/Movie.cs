@@ -11,10 +11,10 @@ namespace MoviesAdmin.Models
 
 
         [Required] // I didn't add other restrictions because sometimes movies can have unique titles and special symbols
-        [StringLength(100, ErrorMessage="Cannot exceed 100 characters")] // Max length 
+        [StringLength(100, ErrorMessage = "Cannot exceed 100 characters")] // Max length 
         [Display(
-            Name = "Title", 
-            Description = "Please enter the movie title", 
+            Name = "Title",
+            Description = "Please enter the movie title",
             Prompt = "Enter movie title")]
         public string Title { get; set; } = string.Empty;
 
@@ -23,24 +23,24 @@ namespace MoviesAdmin.Models
         [StringLength(500, ErrorMessage = "Cannot exceed 500 characters")] // Keep Synopsis short
         [RegularExpression(@"^(?=.*[A-Za-z]).+$", ErrorMessage = "There must be a alphabetical character")]
         [Display(
-            Name = "Synopsis", 
-            Description = "Please enter the movie synopsis", 
+            Name = "Synopsis",
+            Description = "Please enter the movie synopsis",
             Prompt = "Enter movie synopsis")]
         public string Synopsis { get; set; } = string.Empty;
 
 
         [Required]
         [Display(
-            Name = "Genre", 
-            Description = "Please choose the genre", 
+            Name = "Genre",
+            Description = "Please choose the genre",
             Prompt = "Choose genre")]
         public Genre Genre { get; set; }
 
 
         [Required]
         [Display(
-            Name = "Content Rating", 
-            Description = "Please choose the content rating", 
+            Name = "Content Rating",
+            Description = "Please choose the content rating",
             Prompt = "Choose content rating")]
         public ContentRating ContentRating { get; set; } // e.g. PG, PG-13, R
 
@@ -58,19 +58,22 @@ namespace MoviesAdmin.Models
         [Required]
         [Range(1, 576000, ErrorMessage = "Cannot be shorter than a full minute, and cannot be longer then 576,000 minutes")] // Max is 40 days
         [Display(
-            Name = "Run Time (min)", 
-            Description = "Please enter the movie's runtime in minutes", 
+            Name = "Run Time (min)",
+            Description = "Please enter the movie's runtime in minutes",
             Prompt = "120")]
         public int Runtime { get; set; } // Minutes
 
 
         [Required]
         [Display(
-            Name = "Original Language", 
-            Description = "Please enter the movie's original released language", 
+            Name = "Original Language",
+            Description = "Please enter the movie's original released language",
             Prompt = "English")]
         public Language OriginalLanguage { get; set; }
 
+        // URL to image file stored in Azure Storage
+        //[Required]
+        public string? ImageUrl { get; set; } = string.Empty; // Edit so it only accepts movie poster ratios
 
         // IDEAS:
         //public int BoxOffice { get; set; } // Gross Earnings

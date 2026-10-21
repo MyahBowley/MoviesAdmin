@@ -12,17 +12,22 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImageUrl" /> <!--Adding image URL-->
+
             <div class="mb-3">
                 <label asp-for="Title" class="form-label"></label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
                 <label asp-for="Synopsis" class="form-label"></label>
                 <textarea asp-for="Synopsis" class="form-control" rows="8"></textarea>
                 <span asp-validation-for="Synopsis" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
                 <label asp-for="Genre" class="form-label"></label>
 
@@ -31,6 +36,7 @@
 
                 <span asp-validation-for="Genre" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
                 <label asp-for="ContentRating" class="form-label"></label>
 
@@ -39,16 +45,19 @@
 
                 <span asp-validation-for="ContentRating" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
                 <label asp-for="ReleaseDate" class="form-label"></label>
                 <input asp-for="ReleaseDate" class="form-control" type="date" />
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
                 <label asp-for="Runtime" class="form-label"></label>
                 <input asp-for="Runtime" class="form-control" />
                 <span asp-validation-for="Runtime" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
                 <label asp-for="OriginalLanguage" class="form-label"></label>
 
@@ -58,6 +67,7 @@
                 <span asp-validation-for="OriginalLanguage" class="text-danger"></span>
             </div>
             
+
             <div class="d-flex gap-2">
                 <div class="mb-3">
                     <input asp-action="Index" type="submit" value="Back" class="btn btn-secondary" />
@@ -66,6 +76,7 @@
                     <input type="submit" value="Save" class="btn btn-primary" />
                 </div>
             </div>
+
 
         </form>
     </div>

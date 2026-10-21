@@ -2,35 +2,41 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoviesAdmin.Models;
+using MoviesAdmin.Services;
 
 public class MoviesController : Controller
 {
     private readonly MoviesAdminContext _context;
+    private readonly AzureStorageService _azureStorage;
 
-    public MoviesController(MoviesAdminContext context)
+    // Constructor
+    public MoviesController(MoviesAdminContext context, AzureStorageService azureStorage)
     {
         _context = context;
+        _azureStorage = azureStorage;
     }
 
-    // GET: MOVIES
+    // GET: MOVIES/Index
     public async Task<IActionResult> Index()    
     {
         return View(await _context.Movie
             .OrderByDescending(t => t.ReleaseDate)
             .ToListAsync());
+        //List<Movie> movies = await _context.Movie.ToListAsync();
+        //return View(movies); // Display movies into the view
     }
 
     // GET: MOVIES/Details/5
     public async Task<IActionResult> Details(int? id)
     {
-        if (id == null)
+        if (id == null) // Is an ID included in URL?
         {
             return NotFound();
         }
 
         var movie = await _context.Movie
-            .FirstOrDefaultAsync(m => m.Id == id);
-        if (movie == null)
+            .FirstOrDefaultAsync(m => m.Id == id); // get Movie from db where Id = 5
+        if (movie == null) // Was the row found in db?
         {
             return NotFound();
         }
@@ -49,13 +55,43 @@ public class MoviesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Title,Synopsis,Genre,ContentRating,ReleaseDate,Runtime,OriginalLanguage")] Movie movie)
+    public async Task<IActionResult> Create([Bind("Id,Title,Synopsis,Genre,ContentRating,ReleaseDate,Runtime,OriginalLanguage")] Movie movie, IFormFile? ImageUpload)
     {
-        if (ModelState.IsValid)
+        //Validate if Image  File is missing
+        if (ImageUpload == null)
         {
-            _context.Add(movie);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            // Add a validation error
+            ModelState.AddModelError("ImageUpload", "Image file is required.");
+            //return View(movie);
+        }
+
+        if (ModelState.IsValid) // Validate input
+        {
+            //
+            // Upload file to Azure Storage (after input validation occurs)
+            //
+
+            // Make a unique filename (GUID.ext)
+            string extension = Path.GetExtension(ImageUpload!.FileName); // includes the leading dot, e.g. ".jpg"
+            string newFileName = $"{Guid.NewGuid()}{extension}";
+
+            // Upload file to Azure Storage
+            string url = await _azureStorage.UploadFileAsync(ImageUpload, newFileName);
+
+            //string filename = ImageUpload.FileName;
+            //string url = await _azureStorage.UploadFileAsync(ImageUpload, filename);
+
+            // Set the image URL in trail record
+            movie.ImageUrl = url;
+
+            //
+            // Save movie in database
+            //
+
+            _context.Add(movie); // Add new Movie to context (db)
+            await _context.SaveChangesAsync(); // Save changes in db
+            
+            return RedirectToAction(nameof(Index)); // re-direct to Movies/Index page
         }
         return View(movie);
     }
@@ -81,7 +117,7 @@ public class MoviesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? id, [Bind("Id,Title,Synopsis,Genre,ContentRating,ReleaseDate,Runtime,OriginalLanguage")] Movie movie)
+    public async Task<IActionResult> Edit(int? id, [Bind("Id,Title,Synopsis,Genre,ContentRating,ReleaseDate,Runtime,OriginalLanguage,ImageUrl")] Movie movie)
     {
         if (id != movie.Id)
         {
