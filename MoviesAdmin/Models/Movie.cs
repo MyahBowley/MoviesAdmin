@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.FileSystemGlobbing.Internal;
-using MoviesAdmin.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace MoviesAdmin.Models
@@ -29,20 +28,20 @@ namespace MoviesAdmin.Models
         public string Synopsis { get; set; } = string.Empty;
 
 
-        [Required]
-        [Display(
-            Name = "Genre",
-            Description = "Please choose the genre",
-            Prompt = "Choose genre")]
-        public Genre Genre { get; set; }
+        //[Required]
+        //[Display(
+        //    Name = "Genre",
+        //    Description = "Please choose the genre",
+        //    Prompt = "Choose genre")]
+        //public Genre Genre { get; set; }
 
 
-        [Required]
-        [Display(
-            Name = "Content Rating",
-            Description = "Please choose the content rating",
-            Prompt = "Choose content rating")]
-        public ContentRating ContentRating { get; set; } // e.g. PG, PG-13, R
+        //[Required]
+        //[Display(
+        //    Name = "Content Rating",
+        //    Description = "Please choose the content rating",
+        //    Prompt = "Choose content rating")]
+        //public ContentRating ContentRating { get; set; } // e.g. PG, PG-13, R
 
 
         [Required]

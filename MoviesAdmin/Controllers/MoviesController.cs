@@ -55,7 +55,7 @@ public class MoviesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,Title,Synopsis,Genre,ContentRating,ReleaseDate,Runtime,OriginalLanguage")] Movie movie, IFormFile? ImageUpload)
+    public async Task<IActionResult> Create([Bind("Id,Title,Synopsis,ReleaseDate,Runtime,OriginalLanguage")] Movie movie, IFormFile? ImageUpload)
     {
         //Validate if Image  File is missing
         if (ImageUpload == null)
@@ -117,7 +117,7 @@ public class MoviesController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int? id, [Bind("Id,Title,Synopsis,Genre,ContentRating,ReleaseDate,Runtime,OriginalLanguage,ImageUrl")] Movie movie)
+    public async Task<IActionResult> Edit(int? id, [Bind("Id,Title,Synopsis,ReleaseDate,Runtime,OriginalLanguage,ImageUrl")] Movie movie)
     {
         if (id != movie.Id)
         {

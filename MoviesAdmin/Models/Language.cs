@@ -1,4 +1,4 @@
-﻿namespace MoviesAdmin.Models.Enums
+﻿namespace MoviesAdmin.Models
 {
     public enum Language
     {
