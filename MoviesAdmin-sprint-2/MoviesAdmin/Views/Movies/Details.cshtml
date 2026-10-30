@@ -1,0 +1,92 @@
+@model MoviesAdmin.Models.Movie
+@using Microsoft.AspNetCore.Html
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+<h2>@Model.Title</h2>
+
+<div>
+
+    <div class="mb-3">
+        <img src="@Model.ImageUrl" alt="@Model.Title" class="w-25 poster" />
+    </div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Synopsis)
+        </dt>
+        <dd class="col-sm-10">
+            @* @{
+                var descriptionWithBreaks = new HtmlString(
+                    Model.Synopsis.Replace("\r\n","<br />")
+                    .Replace("\n", "<br />")
+                    .Replace("\r", "<br />"));
+            }
+            @descriptionWithBreaks *@
+            @Html.DisplayFor(model => model.Synopsis)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GenreId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Genre.Title)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ContentRatingId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ContentRating.Title)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Runtime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Runtime)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OriginalLanguage)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OriginalLanguage)
+        </dd>
+    </dl>
+
+
+    <div class="d-flex gap-2">
+        <a asp-action="Index"
+           class="btn btn-secondary">Back</a>
+
+        <a asp-action="Edit" 
+        asp-route-id="@Model?.Id"
+        class="btn btn-primary">Edit</a>
+    </div>
+
+</div>

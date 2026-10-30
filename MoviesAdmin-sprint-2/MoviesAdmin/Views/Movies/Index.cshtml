@@ -1,0 +1,60 @@
+@model IEnumerable<MoviesAdmin.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Movies</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><!-- Movie Image --></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContentRatingId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Runtime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="@item.ImageUrl" alt="@item.Title" class="thumbnail" />
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Genre.Title) @* show the Title in the nav property *@
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.ContentRating.Title) @* show the Title in the nav property *@
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Runtime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
