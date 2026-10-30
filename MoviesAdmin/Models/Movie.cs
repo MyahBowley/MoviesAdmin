@@ -1,13 +1,30 @@
-﻿using Microsoft.Extensions.FileSystemGlobbing.Internal;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.Extensions.FileSystemGlobbing.Internal;
 using System.ComponentModel.DataAnnotations;
 
 namespace MoviesAdmin.Models
 {
     public class Movie
     {
+        // "Primary Key"
         [Required]
         public int Id { get; set; }
 
+        // "Foreign Key" - GENRE
+        [Display(Name = "Genre")]
+        public int GenreId { get; set; } // FK to Genre.Id
+
+        // "Foreign Key" - CONTENT RATING
+        [Display(Name = "Content Rating")]
+        public int ContentRatingId { get; set; } // FK to ContentRating.Id
+
+        // Navigation Property - GENRE
+        [ValidateNever]
+        public Genre Genre { get; set; } = null!;
+
+        // Navigation Property - CONTENT RATING
+        [ValidateNever]
+        public ContentRating ContentRating { get; set; } = null!;
 
         [Required] // I didn't add other restrictions because sometimes movies can have unique titles and special symbols
         [StringLength(100, ErrorMessage = "Cannot exceed 100 characters")] // Max length 

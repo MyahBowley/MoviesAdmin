@@ -1,12 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoviesAdmin.Models
 {
     public class CriticReview
     {
+        // "Primary Key"
         [Required]
         public int Id { get; set; }
 
+        // Navigation Property
+        [ValidateNever]
+        public List<Movie> Movies { get; set; } = new List<Movie>();
 
         [Required]
         [StringLength(500, ErrorMessage = "Cannot exceed 500 characters")] // Max length 

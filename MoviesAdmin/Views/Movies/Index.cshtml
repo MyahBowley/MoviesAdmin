@@ -14,10 +14,10 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genre)
+                @Html.DisplayNameFor(model => model.GenreId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ContentRating)
+                @Html.DisplayNameFor(model => model.ContentRatingId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ReleaseDate)
@@ -38,10 +38,10 @@
                 @Html.DisplayFor(model => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(model => item.Genre)
+                @Html.DisplayFor(model => item.Genre.Title)
             </td>
             <td>
-                @Html.DisplayFor(model => item.ContentRating)
+                @Html.DisplayFor(model => item.ContentRating.Title)
             </td>
             <td>
                 @Html.DisplayFor(model => item.ReleaseDate)

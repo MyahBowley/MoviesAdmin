@@ -26,21 +26,13 @@
             </div>
 
             <div class="mb-3">
-                <label asp-for="Genre" class="form-label"></label>
-
-                <select asp-for="Genre" asp-items="Html.GetEnumSelectList<MoviesAdmin.Models.Enums.Genre>()" class="form-select">
-                </select>
-
-                <span asp-validation-for="Genre" class="text-danger"></span>
+                <label asp-for="GenreId" class="control-label"></label>
+                <select asp-for="GenreId" class="form-select" asp-items="ViewBag.GenreId"></select>
             </div>
 
             <div class="mb-3">
-                <label asp-for="ContentRating" class="form-label"></label>
-
-                <select asp-for="ContentRating" asp-items="Html.GetEnumSelectList<MoviesAdmin.Models.Enums.ContentRating>()" class="form-select">
-                </select>
-
-                <span asp-validation-for="ContentRating" class="text-danger"></span>
+                <label asp-for="ContentRatingId" class="control-label"></label>
+                <select asp-for="ContentRatingId" class="form-select" asp-items="ViewBag.ContentRatingId"></select>
             </div>
 
             <div class="mb-3">
@@ -58,7 +50,7 @@
             <div class="mb-3">
                 <label asp-for="OriginalLanguage" class="form-label"></label>
                 
-                <select asp-for="OriginalLanguage" asp-items="Html.GetEnumSelectList<MoviesAdmin.Models.Enums.Language>()" class="form-select">
+                @* <select asp-for="OriginalLanguage" asp-items="Html.GetEnumSelectList<MoviesAdmin.Models.Enums.Language>()" class="form-select"> *@
                 </select>
 
                 <span asp-validation-for="OriginalLanguage" class="text-danger"></span> <!-- These validations are tied to the model -->
