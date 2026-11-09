@@ -9,14 +9,15 @@
 <table class="table">
     <thead>
         <tr>
+            <th><!-- Movie Image --></th>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genre)
+                @Html.DisplayNameFor(model => model.GenreId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ContentRating)
+                @Html.DisplayNameFor(model => model.ContentRatingId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ReleaseDate)
@@ -31,13 +32,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                <img src="@item.ImageUrl" alt="@item.Title" class="thumbnail" />
+            </td>
+            <td>
                 @Html.DisplayFor(model => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(model => item.Genre)
+                @Html.DisplayFor(model => item.Genre.Title)
             </td>
             <td>
-                @Html.DisplayFor(model => item.ContentRating)
+                @Html.DisplayFor(model => item.ContentRating.Title)
             </td>
             <td>
                 @Html.DisplayFor(model => item.ReleaseDate)

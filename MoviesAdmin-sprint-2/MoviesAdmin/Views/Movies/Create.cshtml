@@ -1,0 +1,71 @@
+@model MoviesAdmin.Models.Movie
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add New Movie</h1>
+
+<div class="row">
+    <div class="col-md-4">      <!-- Delete method="post"? -->
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Synopsis" class="form-label"></label>
+                <textarea asp-for="Synopsis" class="form-control" rows="8"></textarea>
+                <span asp-validation-for="Synopsis" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="GenreId" class="control-label"></label>
+                <select asp-for="GenreId" class="form-select" asp-items="ViewBag.GenreId"></select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ContentRatingId" class="control-label"></label>
+                <select asp-for="ContentRatingId" class="form-select" asp-items="ViewBag.ContentRatingId"></select>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ReleaseDate" class="form-label"></label>
+                <input asp-for="ReleaseDate" class="form-control" type="date" />
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Runtime" class="form-label"></label>
+                <input asp-for="Runtime" class="form-control" />
+                <span asp-validation-for="Runtime" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="OriginalLanguage" class="form-label"></label>
+                
+                <select asp-for="OriginalLanguage" asp-items="Html.GetEnumSelectList<MoviesAdmin.Models.Language>()" class="form-select">
+                </select>
+
+                <span asp-validation-for="OriginalLanguage" class="text-danger"></span> <!-- These validations are tied to the model -->
+            </div>
+            
+            <!-- Image Upload -->
+            <div class="mb-3">
+                <label for="ImageUpload" class="form-label">Image Upload</label>
+                <input type="file" id="ImageUpload" name="ImageUpload" class="form-control" />
+                @Html.ValidationMessage("ImageUpload", new { @class = "text-danger" }) <!-- ImageUpload isn't tied to the model, so we use this way to display the validation message (instead of <span asp-validation-for...>) -->
+            </div>
+
+            <div class="mb-3">
+                <input type="submit" value="Add Movie" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
